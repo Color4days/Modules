@@ -1,15 +1,26 @@
-#!name=VVebo
-#!desc=修复VVebo用户主页时间线显示和粉丝列表
-#!author=suiyuran
-#!icon = https://raw.githubusercontent.com/Color4days/iOS_Tools_Rewrite/main/VVebo_Fix/Icon/VVebo.png
+#!name = VVebo
+#!desc = 修复用户主页时间线问题，需将本插件置于[微博去广告]之前，并禁用[微博轻享版去广告]，以避免本插件不生效。
 #!openUrl = https://apps.apple.com/app/id670910957
+#!author = suiyuran[https://github.com/suiyuran], androidcn[https://github.com/androidcn]
+#!tag = 功能增强
+#!system = 
+#!system_version = 
+#!loon_version = 3.3.0(853)
+#!homepage = https://github.com/sooyaaabo/Loon/blob/main/README.md
+#!icon = https://raw.githubusercontent.com/sooyaaabo/Loon/main/Icon/App-Icon/VVebo.png
+#!date = 2025-04-17 11:00
+
+# 2024-04-04
+# https://github.com/suiyuran/stash/blob/main/override/fix-vvebo.stoverride
 
 [Script]
-http-request ^https:\/\/api\.weibo\.cn\/2\/remind\/unread_count\? script-path = https://raw.githubusercontent.com/Color4days/iOS_Tools_Rewrite/main/VVebo_Fix/Scripts/fix-vvebo-user-timeline.js, tag = 修复时间线
-http-request ^https:\/\/api\.weibo\.cn\/2\/statuses\/user_timeline\? script-path = https://raw.githubusercontent.com/Color4days/iOS_Tools_Rewrite/main/VVebo_Fix/Scripts/fix-vvebo-user-timeline.js, tag = 修复时间线
-http-response ^https:\/\/api\.weibo\.cn\/2\/profile\/statuses\/tab\? script-path = https://raw.githubusercontent.com/Color4days/iOS_Tools_Rewrite/main/VVebo_Fix/Scripts/fix-vvebo-user-timeline.js, requires-body = true, tag = 修复时间线
-http-response ^https:\/\/api\.weibo\.cn\/2\/cardlist\? script-path=https://raw.githubusercontent.com/Color4days/iOS_Tools_Rewrite/main/VVebo_Fix/Scripts/fix-vvebo-fans.js, requires-body=true,tag = 修复「我的」页面
+http-request ^https:\/\/api\.weibo\.cn\/2\/remind\/unread_count\? script-path = https://raw.githubusercontent.com/suiyuran/stash/main/scripts/fix-vvebo-user-timeline.js, tag = VVebo修复时间线
 
-[MITM]
+http-request ^https:\/\/api\.weibo\.cn\/2\/statuses\/user_timeline\? script-path = https://raw.githubusercontent.com/suiyuran/stash/main/scripts/fix-vvebo-user-timeline.js, tag = VVebo修复时间线
+
+http-response ^https:\/\/api\.weibo\.cn\/2\/profile\/statuses\/tab\? script-path = https://raw.githubusercontent.com/suiyuran/stash/main/scripts/fix-vvebo-user-timeline.js, requires-body = true, tag = VVebo修复时间线
+
+http-response ^https:\/\/api\.weibo\.cn\/2\/cardlist\? script-path = https://raw.githubusercontent.com/suiyuran/stash/main/scripts/fix-vvebo-fans.js, requires-body = true, tag = VVebo修复我的页面
+
+[MitM]
 hostname = api.weibo.cn
-#hostname = %APPEND% api.weibo.cn
