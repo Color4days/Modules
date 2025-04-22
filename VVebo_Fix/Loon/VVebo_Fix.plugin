@@ -3,6 +3,7 @@
 #!author=suiyuran
 #!icon = https://raw.githubusercontent.com/Color4days/iOS_Tools_Rewrite/main/VVebo_Fix/Icon/VVebo.png
 #!openUrl = https://apps.apple.com/app/id670910957
+
 [Script]
 http-request ^https:\/\/api\.weibo\.cn\/2\/remind\/unread_count\? script-path = https://raw.githubusercontent.com/Color4days/iOS_Tools_Rewrite/main/VVebo_Fix/Scripts/fix-vvebo-user-timeline.js, tag = 修复时间线1
 http-request ^https:\/\/api\.weibo\.cn\/2\/statuses\/user_timeline\? script-path = https://raw.githubusercontent.com/Color4days/iOS_Tools_Rewrite/main/VVebo_Fix/Scripts/fix-vvebo-user-timeline.js, tag = 修复时间线2
@@ -10,5 +11,4 @@ http-response ^https:\/\/api\.weibo\.cn\/2\/profile\/statuses\/tab\? script-path
 http-response ^https:\/\/api\.weibo\.cn\/2\/cardlist\? script-path=https://raw.githubusercontent.com/Color4days/iOS_Tools_Rewrite/main/VVebo_Fix/Scripts/fix-vvebo-fans.js, requires-body=true,tag = 修复「我的」页面
 
 [MITM]
-
 hostname = %APPEND% api.weibo.cn
